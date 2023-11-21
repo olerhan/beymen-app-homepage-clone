@@ -18,8 +18,7 @@ class _AnasayfaState extends State<Anasayfa> {
   @override
   void initState() {
     super.initState();
-    context.read<Vitrin1ListeCubit>().vitrin1Getir();//vitrin1 listesini ön yükleme
-
+    context.read<Vitrin1ListeCubit>().vitrin1Getir();
   }
 
   @override
@@ -27,7 +26,10 @@ class _AnasayfaState extends State<Anasayfa> {
     var ekranBilgisi = MediaQuery.of(context);
     final double ekranYuksekligi = ekranBilgisi.size.height;
     final double ekranGenisligi = ekranBilgisi.size.width;
-    print("Ekran Genişliği $ekranGenisligi Ekran Yüksekliği $ekranYuksekligi");
+    final double eGenK = ekranGenisligi / 411.42857142857144;
+    print("Ekran Genişliği: $ekranGenisligi Ekran Yüksekliği: $ekranYuksekligi");
+    print("Genişlik Katsayısı: $eGenK");
+
 
     return Scaffold(
         appBar: AppBar(
@@ -40,7 +42,7 @@ class _AnasayfaState extends State<Anasayfa> {
               SizedBox(
                   width: ekranGenisligi,
                   height: (ekranGenisligi / 16) * 9,
-                  child: BlocBuilder<Vitrin1ListeCubit, List<Vitrin1Model>>(//vitrin1 listesi için dinleme
+                  child: BlocBuilder<Vitrin1ListeCubit, List<Vitrin1Model>>(
                       builder: (context, emitList) {
                         if (emitList.isNotEmpty) {
                           return Stack(
@@ -53,9 +55,9 @@ class _AnasayfaState extends State<Anasayfa> {
                                       child: Center(
                                         child: FadeInImage.assetNetwork(
                                           placeholder: "resimler/vitrin_placeholder.png",
-                                          image: "https://images.unsplash.com/${vitrin1HerBirNesne.resim}",
+                                          image: "https://images.unsplash.com/${vitrin1HerBirNesne.resimUrl}",
                                           fit: BoxFit.cover,
-                                          width: 1000,
+                                          width: ekranGenisligi,
                                         ),
                                       ),
                                     );
@@ -66,24 +68,24 @@ class _AnasayfaState extends State<Anasayfa> {
                                       enlargeCenterPage: false,
                                       viewportFraction: 1,
                                       onPageChanged: (cubitSendIndeks, reason){
-                                        context.read<Vitrin1AktifIndeksCubit>().vitrin1AktifIndeksGetir(cubitSendIndeks); //gönderme
+                                        context.read<Vitrin1AktifIndeksCubit>().vitrin1AktifIndeksGetir(cubitSendIndeks);
                                       },
                                   )
                               ),
                               Align(
                                 alignment: Alignment.bottomCenter,
                                 child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: BlocBuilder<Vitrin1AktifIndeksCubit, int>(//vitrin1 aktif indeks için dinleme
+                                    padding: EdgeInsets.all(8.0 * eGenK),
+                                    child: BlocBuilder<Vitrin1AktifIndeksCubit, int>(
                                     builder: (context, emitAktifIndeks){
                                       return AnimatedSmoothIndicator(
                                         activeIndex: emitAktifIndeks,
                                         count: emitList.length,
                                         effect: ExpandingDotsEffect(
                                           expansionFactor: 1.6,
-                                          dotHeight: 5,
-                                          dotWidth: 9,
-                                          spacing: 3,
+                                          dotHeight: 5 * eGenK,
+                                          dotWidth: 9 * eGenK,
+                                          spacing: 3 * eGenK,
                                           activeDotColor: mavi,
                                           dotColor: Colors.white,
                                         ),

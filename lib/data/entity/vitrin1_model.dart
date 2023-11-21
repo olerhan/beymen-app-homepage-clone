@@ -1,7 +1,7 @@
 class Vitrin1Model {
   int id;
   String ad;
-  String resim;
+  String resimUrl;
 
-  Vitrin1Model({required this.id,required this.ad,required this.resim});
+  Vitrin1Model({required this.id,required this.ad,required this.resimUrl});
 }
