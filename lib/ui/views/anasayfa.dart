@@ -1,7 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:karusel_calismasi/data/entity/vitrin1_model.dart';
+import 'package:karusel_calismasi/data/entity/utility.dart';
+import 'package:karusel_calismasi/data/entity/vitrin_model.dart';
 import 'package:karusel_calismasi/data/entity/renkler.dart';
 import 'package:karusel_calismasi/ui/cubit/anasayfa_cubit.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -23,13 +24,8 @@ class _AnasayfaState extends State<Anasayfa> {
 
   @override
   Widget build(BuildContext context) {
-    var ekranBilgisi = MediaQuery.of(context);
-    final double ekranYuksekligi = ekranBilgisi.size.height;
-    final double ekranGenisligi = ekranBilgisi.size.width;
-    final double eGenK = ekranGenisligi / 411.42857142857144;
-    print("Ekran Genişliği: $ekranGenisligi Ekran Yüksekliği: $ekranYuksekligi");
-    print("Genişlik Katsayısı: $eGenK");
-
+    final double ekranGenisligi = Utility.hesaplaEkranGenisligi(context)[1];
+    final double eGenK = Utility.hesaplaEkranGenisligi(context)[0];
 
     return Scaffold(
         appBar: AppBar(
@@ -42,7 +38,7 @@ class _AnasayfaState extends State<Anasayfa> {
               SizedBox(
                   width: ekranGenisligi,
                   height: (ekranGenisligi / 16) * 9,
-                  child: BlocBuilder<Vitrin1ListeCubit, List<Vitrin1Model>>(
+                  child: BlocBuilder<Vitrin1ListeCubit, List<VitrinModel>>(
                       builder: (context, emitList) {
                         if (emitList.isNotEmpty) {
                           return Stack(

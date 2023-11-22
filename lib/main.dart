@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => Vitrin1AktifIndeksCubit()),
         BlocProvider(create: (context) => Vitrin1ListeCubit()),
+        BlocProvider(create: (context) => Vitrin2AktifIndeksCubit()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

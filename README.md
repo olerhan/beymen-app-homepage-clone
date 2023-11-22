@@ -1,6 +1,6 @@
-# karusel_calismasi
+# clonebeymen
 
-Karusel Çalışması
+Tasarım Çalışması
 
 ## Getting Started
 
