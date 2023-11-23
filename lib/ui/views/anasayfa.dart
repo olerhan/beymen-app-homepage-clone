@@ -16,16 +16,23 @@ class Anasayfa extends StatefulWidget {
 
 class _AnasayfaState extends State<Anasayfa> {
 
+  var vitrin1ListeCubit = Vitrin1ListeCubit();
+  var vitrin1AktifIndeksCubit = Vitrin1AktifIndeksCubit();
+
   @override
   void initState() {
     super.initState();
-    context.read<Vitrin1ListeCubit>().vitrin1Getir();
+    WidgetsBinding.instance.addPostFrameCallback((_) {  //widget ağacının tamamen oluşturulduktan ve ilk frame'in çizildikten sonra gerçekleştirilmesini sağlar.
+      vitrin1ListeCubit.veriGetir();
+    });
   }
+
 
   @override
   Widget build(BuildContext context) {
     final double ekranGenisligi = Utility.hesaplaEkranGenisligi(context)[1];
     final double eGenK = Utility.hesaplaEkranGenisligi(context)[0];
+
 
     return Scaffold(
         appBar: AppBar(
@@ -35,70 +42,7 @@ class _AnasayfaState extends State<Anasayfa> {
         ),
         body: Column(
             children: [
-              SizedBox(
-                  width: ekranGenisligi,
-                  height: (ekranGenisligi / 16) * 9,
-                  child: BlocBuilder<Vitrin1ListeCubit, List<VitrinModel>>(
-                      builder: (context, emitList) {
-                        if (emitList.isNotEmpty) {
-                          return Stack(
-                            children: [
-                              CarouselSlider.builder(
-                                  itemCount: emitList.length,
-                                  itemBuilder: (BuildContext context, int nesneIndeks, int sayfaIndex){
-                                    var vitrin1HerBirNesne = emitList[nesneIndeks];
-                                    return Container(
-                                      child: Center(
-                                        child: FadeInImage.assetNetwork(
-                                          placeholder: "resimler/vitrin_placeholder.png",
-                                          image: "https://images.unsplash.com/${vitrin1HerBirNesne.resimUrl}",
-                                          fit: BoxFit.cover,
-                                          width: ekranGenisligi,
-                                        ),
-                                      ),
-                                    );
-                                    },
-                                  options: CarouselOptions(
-                                      autoPlay: true,
-                                      aspectRatio: 16 / 9,
-                                      enlargeCenterPage: false,
-                                      viewportFraction: 1,
-                                      onPageChanged: (cubitSendIndeks, reason){
-                                        context.read<Vitrin1AktifIndeksCubit>().vitrin1AktifIndeksGetir(cubitSendIndeks);
-                                      },
-                                  )
-                              ),
-                              Align(
-                                alignment: Alignment.bottomCenter,
-                                child: Padding(
-                                    padding: EdgeInsets.all(8.0 * eGenK),
-                                    child: BlocBuilder<Vitrin1AktifIndeksCubit, int>(
-                                    builder: (context, emitAktifIndeks){
-                                      return AnimatedSmoothIndicator(
-                                        activeIndex: emitAktifIndeks,
-                                        count: emitList.length,
-                                        effect: ExpandingDotsEffect(
-                                          expansionFactor: 1.6,
-                                          dotHeight: 5 * eGenK,
-                                          dotWidth: 9 * eGenK,
-                                          spacing: 3 * eGenK,
-                                          activeDotColor: mavi,
-                                          dotColor: Colors.white,
-                                        ),
-                                      );
-                                    },
-                                    ),
-                                ),
-                              ),
-                            ],
-                          );
-                        }else{
-                          print("veri bekleniyor");
-                          return Center(child: CircularProgressIndicator());
-                        }
-                      }
-                      )
-              ),
+              VitrinViewModel(vitrinNListeCubit: vitrin1ListeCubit, vitrinNAktifIndeksCubit: vitrin1AktifIndeksCubit, widgetAspectRatioY: 9, widgetAspectRatioX: 16)
             ]
         )
     );

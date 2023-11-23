@@ -17,8 +17,8 @@ class VitrinModel {
 
 class VitrinViewModel extends StatefulWidget {
 
-  Cubit vitrinNListeCubit;
-  Cubit vitrinNAktifIndeksCubit;
+  VitrinListeCubit vitrinNListeCubit;
+  VitrinAktifIndeksCubit vitrinNAktifIndeksCubit;
   double widgetAspectRatioY;
   double widgetAspectRatioX;
 
@@ -45,7 +45,8 @@ class _VitrinViewModelState extends State<VitrinViewModel> {
     return SizedBox(
         width: ekranGenisligi,
         height: (ekranGenisligi / widget.widgetAspectRatioX) * widget.widgetAspectRatioY,
-        child: BlocBuilder<widget.vitrinNListeCubit, List<VitrinModel>>( // burada nasıl kullanacağım
+        child: BlocBuilder<Cubit<List<VitrinModel>>, List<VitrinModel>>( // burada nasıl kullanacağım
+            bloc: widget.vitrinNListeCubit,
             builder: (context, emitList) {
               if (emitList.isNotEmpty) {
                 return Stack(
@@ -58,7 +59,7 @@ class _VitrinViewModelState extends State<VitrinViewModel> {
                             child: Center(
                               child: FadeInImage.assetNetwork(
                                 placeholder: "resimler/vitrin_placeholder.png",
-                                image: vitrinHerBirNesne.resimUrl,
+                                image: "${vitrinHerBirNesne.resimUrl}",
                                 fit: BoxFit.cover,
                                 width: ekranGenisligi,
                               ),
@@ -71,7 +72,7 @@ class _VitrinViewModelState extends State<VitrinViewModel> {
                           enlargeCenterPage: false,
                           viewportFraction: 1,
                           onPageChanged: (cubitSendIndeks, reason){
-                            context.read<widget.vitrinNAktifIndeksCubit>().vitrinAktifIndeksGetir(cubitSendIndeks); // burada nasıl kullanacağım
+                            widget.vitrinNAktifIndeksCubit.getirVitrinAktifIndeks(cubitSendIndeks);
                           },
                         )
                     ),
@@ -79,7 +80,8 @@ class _VitrinViewModelState extends State<VitrinViewModel> {
                       alignment: Alignment.bottomCenter,
                       child: Padding(
                         padding: EdgeInsets.all(8.0 * eGenK),
-                        child: BlocBuilder<widget.vitrinNAktifIndeksCubit, int>( // burada nasıl kullanacağım
+                        child: BlocBuilder<Cubit<int>, int>( // burada nasıl kullanacağım
+                          bloc: widget.vitrinNAktifIndeksCubit,
                           builder: (context, emitAktifIndeks){
                             return AnimatedSmoothIndicator(
                               activeIndex: emitAktifIndeks,
