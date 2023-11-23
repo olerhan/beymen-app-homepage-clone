@@ -42,7 +42,7 @@ class _VitrinViewModelState extends State<VitrinViewModel> {
     return SizedBox(
         width: ekranGenisligi,
         height: (ekranGenisligi / widget.widgetAspectRatioX) * widget.widgetAspectRatioY,
-        child: BlocBuilder<Cubit<List<VitrinModel>>, List<VitrinModel>>( // burada nasıl kullanacağım
+        child: BlocBuilder<Cubit<List<VitrinModel>>, List<VitrinModel>>(
             bloc: widget.vitrinNListeCubit,
             builder: (context, emitList) {
               if (emitList.isNotEmpty) {
@@ -77,7 +77,7 @@ class _VitrinViewModelState extends State<VitrinViewModel> {
                       alignment: Alignment.bottomCenter,
                       child: Padding(
                         padding: EdgeInsets.all(8.0 * eGenK),
-                        child: BlocBuilder<Cubit<int>, int>( // burada nasıl kullanacağım
+                        child: BlocBuilder<Cubit<int>, int>(
                           bloc: widget.vitrinNAktifIndeksCubit,
                           builder: (context, emitAktifIndeks){
                             return AnimatedSmoothIndicator(

@@ -8,19 +8,26 @@ abstract class VitrinListeCubit extends Cubit<List<VitrinModel>> {
   Future<void> veriGetir();
 }
 class Vitrin1ListeCubit extends VitrinListeCubit {
+  var vitrin1DaoRepository = Vitrin1DaoRepository();
   @override
   Future<void> veriGetir() async {
-    var vitrin1ListesiEmit = await Vitrin1DaoRepository().vitrin1DaodanYukle();
+    var vitrin1ListesiEmit = await vitrin1DaoRepository.vitrin1DaodanYukle();
     emit(vitrin1ListesiEmit);
   }
 }
 class Vitrin2ListeCubit extends VitrinListeCubit {
+  var vitrin2DaoRepository = Vitrin2DaoRepository();
   @override
   Future<void> veriGetir() async {
-    var vitrin2ListesiEmit = await Vitrin2DaoRepository().vitrin2DaodanYukle();
+    var vitrin2ListesiEmit = await vitrin2DaoRepository.vitrin2DaodanYukle();
     emit(vitrin2ListesiEmit);
   }
 }
+//VitrinListeCubit soyut (abstract) bir sınıftır ve veriGetir soyut bir metottur.
+// Vitrin1ListeCubit ve Vitrin2ListeCubit sınıfı VitrinListeCubit'ten türetilmiştir.
+// veriGetir metodunu uygulamak (override etmek) zorundadır.
+
+
 
 
 //Carousel Slider ve Smooth Page Indicator entegrasyonu için

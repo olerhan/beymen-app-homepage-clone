@@ -15,13 +15,15 @@ class _AnasayfaState extends State<Anasayfa> {
 
   var vitrin1ListeCubit = Vitrin1ListeCubit();
   var vitrin1AktifIndeksCubit = Vitrin1AktifIndeksCubit();
-  var vitrin2ListeCubit = Vitrin1ListeCubit();
-  var vitrin2AktifIndeksCubit = Vitrin1AktifIndeksCubit();
+  var vitrin2ListeCubit = Vitrin2ListeCubit();
+  var vitrin2AktifIndeksCubit = Vitrin2AktifIndeksCubit();
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {  //widget ağacının tamamen oluşturulduktan ve ilk frame'in çizildikten sonra gerçekleştirilmesini sağlar.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      //context'in widget ağacının tamamen oluşturulduktan ve ilk frame'in çizildikten sonra gerçekleştirilmesini sağlar.
+      //Verilerimizi önce getirmemiz gerekiyor.
       vitrin1ListeCubit.veriGetir();
       vitrin2ListeCubit.veriGetir();
     });
@@ -29,9 +31,10 @@ class _AnasayfaState extends State<Anasayfa> {
 
   @override
   Widget build(BuildContext context) {
+
+    //Adaptive Design
     final double ekranGenisligi = Utility.hesaplaEkranGenisligi(context)[1];
     final double eGenK = Utility.hesaplaEkranGenisligi(context)[0];
-
 
     return Scaffold(
         appBar: AppBar(
@@ -41,8 +44,14 @@ class _AnasayfaState extends State<Anasayfa> {
         ),
         body: Column(
             children: [
-              VitrinViewModel(vitrinNListeCubit: vitrin2ListeCubit, vitrinNAktifIndeksCubit: vitrin2AktifIndeksCubit, widgetAspectRatioY: 9, widgetAspectRatioX: 16),
-              VitrinViewModel(vitrinNListeCubit: vitrin1ListeCubit, vitrinNAktifIndeksCubit: vitrin1AktifIndeksCubit, widgetAspectRatioY: 9, widgetAspectRatioX: 16)
+              Padding(
+                padding: const EdgeInsets.only(),
+                child: VitrinViewModel(vitrinNListeCubit: vitrin1ListeCubit, vitrinNAktifIndeksCubit: vitrin1AktifIndeksCubit, widgetAspectRatioY: 1, widgetAspectRatioX: 1.5),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: VitrinViewModel(vitrinNListeCubit: vitrin2ListeCubit, vitrinNAktifIndeksCubit: vitrin2AktifIndeksCubit, widgetAspectRatioY: 1, widgetAspectRatioX: 1.5),
+              ),
             ]
         )
     );
