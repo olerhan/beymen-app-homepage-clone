@@ -35,19 +35,20 @@ class _AnasayfaState extends State<Anasayfa> {
     final double ekranGenisligi = Utility.hesaplaEkranGenisligi(context)[1];
     final double eGenK = Utility.hesaplaEkranGenisligi(context)[0];
 
-    return Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-              children: [
-                SizedBox(height: 14*eGenK,),
-                VitrinViewModel(vitrinNListeCubit: vitrin1ListeCubit, vitrinNAktifIndeksCubit: vitrin1AktifIndeksCubit, widgetAspectRatioY: 1, widgetAspectRatioX: 1.5, padLeftRight: 10*eGenK, padtop: 0*eGenK, padbottom: 0*eGenK,),
-                SizedBox(height: 14*eGenK,),
-                VitrinViewModel(vitrinNListeCubit: vitrin2ListeCubit, vitrinNAktifIndeksCubit: vitrin2AktifIndeksCubit, widgetAspectRatioY: 1, widgetAspectRatioX: 1.5, padLeftRight: 10*eGenK, padtop: 0*eGenK, padbottom: 0*eGenK,),
-                SizedBox(height: 30*eGenK,),
-                Text("Öne Çıkanlar", style: TextStyle(fontFamily: "TTNormsPro", fontWeight: FontWeight.w500 ),)
-              ]
-          ),
+    return Container(
+      decoration: const BoxDecoration(color: Colors.white,),
+      child: SingleChildScrollView(
+        child: Column(
+            children: [
+              SizedBox(height: 14*eGenK,),
+              VitrinViewModel(vitrinNListeCubit: vitrin1ListeCubit, vitrinNAktifIndeksCubit: vitrin1AktifIndeksCubit, widgetAspectRatioY: 1, widgetAspectRatioX: 1.5, padLeftRight: 10*eGenK, padtop: 0*eGenK, padbottom: 0*eGenK,),
+              SizedBox(height: 14*eGenK,),
+              VitrinViewModel(vitrinNListeCubit: vitrin2ListeCubit, vitrinNAktifIndeksCubit: vitrin2AktifIndeksCubit, widgetAspectRatioY: 1, widgetAspectRatioX: 1.5, padLeftRight: 10*eGenK, padtop: 0*eGenK, padbottom: 0*eGenK,),
+              SizedBox(height: 30*eGenK,),
+              const Text("Öne Çıkanlar", style: TextStyle(fontFamily: "TTNormsPro", fontWeight: FontWeight.w500 ),)
+            ]
         ),
+      ),
     );
   }
 }

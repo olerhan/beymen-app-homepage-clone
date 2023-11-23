@@ -28,6 +28,7 @@ class _BottomNavigationSayfaState extends State<BottomNavigationSayfa> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         title: Center(
           child: Column(
             children: [
@@ -67,9 +68,9 @@ class _BottomNavigationSayfaState extends State<BottomNavigationSayfa> {
           BottomNavigationBarItem(icon: Icon(Icons.account_circle_outlined),label: "Profilim"),
         ],
         currentIndex: secilenIndeks,
-        backgroundColor: Colors.grey.shade50,
+        backgroundColor: Colors.white,
         selectedItemColor: Colors.grey.shade900,
-        unselectedItemColor: Colors.grey.shade400,
+        unselectedItemColor: Colors.grey.shade600,
         type: BottomNavigationBarType.fixed,
         iconSize: 24*eGenK,
         selectedFontSize: 11*eGenK,
