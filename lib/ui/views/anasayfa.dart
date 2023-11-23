@@ -37,23 +37,18 @@ class _AnasayfaState extends State<Anasayfa> {
     final double eGenK = Utility.hesaplaEkranGenisligi(context)[0];
 
     return Scaffold(
-        appBar: AppBar(
-          title: Center(
-              child: Text("V I T R I N",style: TextStyle(color: mavi))
+        body: SingleChildScrollView(
+          child: Column(
+              children: [
+                SizedBox(height: 14*eGenK,),
+                VitrinViewModel(vitrinNListeCubit: vitrin1ListeCubit, vitrinNAktifIndeksCubit: vitrin1AktifIndeksCubit, widgetAspectRatioY: 1, widgetAspectRatioX: 1.5, padLeftRight: 10*eGenK, padtop: 0*eGenK, padbottom: 0*eGenK,),
+                SizedBox(height: 14*eGenK,),
+                VitrinViewModel(vitrinNListeCubit: vitrin2ListeCubit, vitrinNAktifIndeksCubit: vitrin2AktifIndeksCubit, widgetAspectRatioY: 1, widgetAspectRatioX: 1.5, padLeftRight: 10*eGenK, padtop: 0*eGenK, padbottom: 0*eGenK,),
+                SizedBox(height: 30*eGenK,),
+                Text("Öne Çıkanlar", style: TextStyle(fontFamily: "TTNormsPro", fontWeight: FontWeight.w500 ),)
+              ]
           ),
         ),
-        body: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(),
-                child: VitrinViewModel(vitrinNListeCubit: vitrin1ListeCubit, vitrinNAktifIndeksCubit: vitrin1AktifIndeksCubit, widgetAspectRatioY: 1, widgetAspectRatioX: 1.5),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: VitrinViewModel(vitrinNListeCubit: vitrin2ListeCubit, vitrinNAktifIndeksCubit: vitrin2AktifIndeksCubit, widgetAspectRatioY: 1, widgetAspectRatioX: 1.5),
-              ),
-            ]
-        )
     );
   }
 }
