@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:karusel_calismasi/data/entity/utility.dart';
 import 'package:karusel_calismasi/data/entity/vitrin_model.dart';
-import 'package:karusel_calismasi/data/entity/renkler.dart';
 import 'package:karusel_calismasi/ui/cubit/anasayfa_cubit.dart';
 
 class Anasayfa extends StatefulWidget {

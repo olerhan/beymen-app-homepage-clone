@@ -1,4 +1,4 @@
-# clonebeymen
+# beymen_app_homepage_clone
 
 Tasarım Çalışması
 
