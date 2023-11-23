@@ -11,5 +11,4 @@ class Utility {
     print("Genişlik Katsayısı: $eGenK");
     return [eGenK,ekranGenisligi];
   }
-
 }

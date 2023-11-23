@@ -14,14 +14,12 @@ class VitrinModel {
   VitrinModel({required this.id,required this.ad,required this.resimUrl});
 }
 
-
 class VitrinViewModel extends StatefulWidget {
 
   VitrinListeCubit vitrinNListeCubit;
   VitrinAktifIndeksCubit vitrinNAktifIndeksCubit;
   double widgetAspectRatioY;
   double widgetAspectRatioX;
-
 
   VitrinViewModel(
       {required this.vitrinNListeCubit,
@@ -34,7 +32,6 @@ class VitrinViewModel extends StatefulWidget {
 }
 
 class _VitrinViewModelState extends State<VitrinViewModel> {
-
 
   @override
   Widget build(BuildContext context) {

@@ -2,9 +2,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:karusel_calismasi/data/entity/vitrin_model.dart';
 import 'package:karusel_calismasi/data/repo/vitrinDao_repository.dart';
 
+//VİTRİN LİSTE VERİLERİ
 abstract class VitrinListeCubit extends Cubit<List<VitrinModel>> {
   VitrinListeCubit() : super(<VitrinModel>[]);
-
   Future<void> veriGetir();
 }
 class Vitrin1ListeCubit extends VitrinListeCubit {
@@ -14,7 +14,6 @@ class Vitrin1ListeCubit extends VitrinListeCubit {
     emit(vitrin1ListesiEmit);
   }
 }
-
 class Vitrin2ListeCubit extends VitrinListeCubit {
   @override
   Future<void> veriGetir() async {
@@ -24,19 +23,17 @@ class Vitrin2ListeCubit extends VitrinListeCubit {
 }
 
 
+//Carousel Slider ve Smooth Page Indicator entegrasyonu için
 abstract class VitrinAktifIndeksCubit extends Cubit<int> {
   VitrinAktifIndeksCubit() : super(0);
-
   void getirVitrinAktifIndeks(int cubiteInitIndeks);
 }
-
 class Vitrin1AktifIndeksCubit extends VitrinAktifIndeksCubit {
   @override
   void getirVitrinAktifIndeks(int cubiteInitIndeks){
     emit(cubiteInitIndeks);
   }
 }
-
 class Vitrin2AktifIndeksCubit extends VitrinAktifIndeksCubit {
   @override
   void getirVitrinAktifIndeks(int cubiteInitIndeks){
